@@ -3,7 +3,11 @@ package main;
 import main.model.CategoryProduct;
 import main.model.Product;
 import main.model.ProductRepository;
+import main.model.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -14,7 +18,7 @@ public class ProductController
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping("/warehouse/product/")
+    @GetMapping(value = "/warehouse/product/")
     public List<Product> list()
     {
         Iterable<Product> productsIterable = productRepository.findAll();
@@ -26,12 +30,10 @@ public class ProductController
         return products;
     }
 
-    @PostMapping("/warehouse/product/")
+    @PostMapping(value = "/warehouse/product/", params = "categoryProduct")
+    @ResponseBody
     public void add(Product product)
     {
-        CategoryProduct categoryProduct = new CategoryProduct();
-
-        product.setCategoryProduct(categoryProduct);
         productRepository.save(product);
     }
 
@@ -49,7 +51,7 @@ public class ProductController
         }
         for(int i = 0; i < products.size(); )
         {
-            if(products.get(i).getTitleProduct().equals(titleProduct) && products.get(i).getCategoryProduct().equals(categoryProduct))
+            if(products.get(i).getTitleProduct().equals(titleProduct) && products.get(i).getCategoryProduct().getTitleCategory().equals(categoryProduct))
             {
                 i++;
                 continue;
@@ -59,10 +61,13 @@ public class ProductController
         return products;
     }
 
-    @DeleteMapping("/warehouse/product/{id}")
+    @DeleteMapping(value = "/warehouse/product/{id}")
     public void delete(@PathVariable int id)
     {
-        productRepository.deleteById(id);
+        Optional<Product> products = productRepository.findById(id);
+        Product product = products.get();
+        product.setCategoryProduct(null);
+        productRepository.delete(product);
     }
 
     @PutMapping("/warehouse/product/{id}")
