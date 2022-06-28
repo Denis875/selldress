@@ -1,7 +1,7 @@
-package main;
+package main.controller;
 
 import main.model.CategoryProduct;
-import main.model.CategoryProductRepository;
+import main.repository.CategoryProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

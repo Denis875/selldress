@@ -1,10 +1,9 @@
-package main.model;
+package main.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import main.model.Product;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
 
 
 @Repository

@@ -1,20 +1,12 @@
-package main.model;
+package main.DTO;
 
-import javax.persistence.*;
+import main.model.CategoryProduct;
 
-@Entity
-@Table(name = "product")
-public class Product
+
+public class ProductDTO
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_product")
     private int idProduct;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_category_product")
     private CategoryProduct categoryProduct;
-    @Column(name = "title_product")
     private String titleProduct;
     private String color;
     private int size;

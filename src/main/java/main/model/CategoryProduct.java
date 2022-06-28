@@ -12,7 +12,6 @@ public class CategoryProduct
     @Column(name = "title_category")
     private String titleCategory;
 
-
     public int getIdCategoryProduct() {
         return idCategoryProduct;
     }

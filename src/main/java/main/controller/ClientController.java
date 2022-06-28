@@ -1,7 +1,7 @@
-package main;
+package main.controller;
 
 import main.model.Client;
-import main.model.ClientRepository;
+import main.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
