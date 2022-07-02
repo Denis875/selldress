@@ -26,7 +26,7 @@ public class ProductController
         return product;
     }
 
-    @PostMapping(value = "/warehouse/product/", params = {"categoryProduct", "warehouses"})
+    @PostMapping(value = "/warehouse/product/", params = "categoryProduct")
     @ResponseBody
     public void add(Product product)
     {
