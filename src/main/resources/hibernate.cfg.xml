@@ -22,6 +22,7 @@
         <mapping class="Client"></mapping>
         <mapping class="Product"></mapping>
         <mapping class="Warehouse"></mapping>
+        <mapping class="Order"></mapping>
         <mapping class="CategoryProduct"></mapping>
     </session-factory>
 </hibernate-configuration>
