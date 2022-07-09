@@ -15,6 +15,10 @@ public class Basket
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_product")
     private Product product;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_discount")
+    private Discount discount;
+
     private int count;
     private int price;
 
@@ -24,6 +28,14 @@ public class Basket
 
     public void setIdBasket(int idBasket) {
         this.idBasket = idBasket;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
     }
 
     public Order getOrder() {
